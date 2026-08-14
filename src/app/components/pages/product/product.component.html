@@ -1,0 +1,11 @@
+<div class="col-md-6 col-lg-4 m-auto mt-4">
+  <div class="card text-start ">
+    <img src="{{product.image}}" class="card-img-top img-fluid" alt="image1">
+    <div class="card-body">
+      <h5 class="card-title">{{ product.title }}</h5>
+      <p class="card-text">{{ product.description }}</p>
+      <p class="card-text">{{ product.price }} руб/кг</p>
+      <a [routerLink]="'/order'" [queryParams]="{product: product.title}" class="btn btn-primary w-btn mt-3">Купить</a>
+    </div>
+  </div>
+</div>

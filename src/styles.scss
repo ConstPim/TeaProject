@@ -1,1 +1,58 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+:root {
+  --width-btn: 200px;
+}
+
+.btn-outline-success {
+  --bs-btn-color: var(--bs-indigo);
+  --bs-btn-border-color: var(--bs-indigo);
+  --bs-btn-hover-bg: var(--bs-indigo);
+  --bs-btn-hover-border-color: var(--bs-indigo);
+  --bs-btn-active-bg: var(--bs-indigo);
+  --bs-btn-active-border-color: var(--bs-indigo);
+  --bs-btn-disabled-color: var(--bs-indigo);
+  --bs-btn-disabled-border-color: var(--bs-indigo);
+}
+
+.btn-primary {
+  --bs-btn-bg: var(--bs-indigo);
+  --bs-btn-border-color: var(--bs-indigo);
+  --bs-btn-hover-bg: #550dcd;
+  --bs-btn-hover-border-color: #550dcd;
+  --bs-btn-active-bg: var(--bs-indigo);
+  --bs-btn-active-border-color: var(--bs-indigo);
+  --bs-btn-disabled-bg: var(--bs-indigo);
+  --bs-btn-disabled-border-color: var(--bs-indigo);
+}
+.accordion-button {
+  background-color: #6610f2 !important;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: #6610f2 !important;
+}
+
+.accordion-button:focus {
+  box-shadow: 0 0 0 0.25rem rgba(102, 16, 242, 0.25) !important;
+}
+
+.accordion-button::after {
+  content: url("assets/images/next 3.png");
+}
+
+.w-btn {
+  width: var(--width-btn);
+}
+
+.card {
+  height: 100%;
+
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
