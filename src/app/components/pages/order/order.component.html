@@ -1,6 +1,7 @@
 <section class="container text-center mt-5" *ngIf="!submitOk">
   <h2 class="m-5 pt-4 pb-2 ">Сделать заказ</h2>
-  <form class="row g-3 w-50 m-auto text-start" [formGroup]="signInForm" >
+  <form class="row g-3 w-50 m-auto text-start" [formGroup]="signInForm"
+        (ngSubmit)="createOrder()">
     <div class="col-12">
       <label for="product" class="form-label">Товар</label>
       <input type="text" class="form-control" formControlName="product" id="product" name="product">
@@ -18,7 +19,7 @@
           Заполните Имя!
         </div>
         <div class="text-danger" *ngIf="name?.errors?.['pattern']">
-          Заполните Имя правильно!
+          Поле может содержать только буквы кириллицы!
         </div>
       </div>
     </div>
@@ -31,7 +32,7 @@
           Заполните Фамилию!
         </div>
         <div class="text-danger" *ngIf="last_name?.errors?.['pattern']">
-          Заполните Фамилию правильно!
+          Поле может содержать только буквы кириллицы!
         </div>
       </div>
     </div>
@@ -44,7 +45,7 @@
           Заполните телефон!
         </div>
         <div class="text-danger" *ngIf="phone?.errors?.['pattern']">
-          Заполните телефон правильно!
+          Номер телефона должен состоять из 11 цифр!
         </div>
       </div>
     </div>
@@ -77,15 +78,15 @@
           Заполните адрес!
         </div>
         <div class="text-danger" *ngIf="address?.errors?.['pattern']">
-          Заполните адрес правильно!
+          Поле может содержать только можно вводить: буквы кириллицы, цифры, пробелы, дефис и #
         </div>
       </div>
     </div>
     <div class="col-12">
-      <button type="submit" class="btn btn-primary w-btn" (click)="createOrder()">Отправить</button>
+      <button class="btn btn-primary w-btn" [disabled]="signInForm.invalid || signInForm.disabled"]>Отправить</button>
       <div class="text-danger" *ngIf="submitError">Произошла ошибка. Попробуйте еще раз.</div>
     </div>
   </form>
 </section>
 
-<div class="w-25 h-100 fs-1 text-center mt-4 mb-4 pt-5 pb-5 m-auto" *ngIf="submitOk">Спасибо за заказ!</div>
+<div class="d-flex justify-content-center align-items-center min-vh-100 fs-1 text-center w-100" *ngIf="submitOk">Спасибо за заказ!</div>

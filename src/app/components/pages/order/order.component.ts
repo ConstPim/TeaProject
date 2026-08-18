@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from "rxjs";
 import {ActivatedRoute} from "@angular/router";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {FormType} from "../../../types/form.type";
 import {HttpService} from "../../../servises/http.service";
 
@@ -15,15 +15,15 @@ export class OrderComponent implements OnInit, OnDestroy {
   submitError: boolean = false;
   submitOk: boolean = false;
 
-  signInForm = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.pattern(/^[а-яА-ЯёЁ\s-]+$/)]),
-    last_name: new FormControl('', [Validators.required, Validators.pattern(/^[а-яА-ЯёЁ\s-]+$/)]),
-    phone: new FormControl('', [Validators.required, Validators.pattern(/^\+?\d{11}$/)]),
-    country: new FormControl('', Validators.required),
-    zip: new FormControl('', Validators.required),
-    product: new FormControl({value: '', disabled: true}),
-    address: new FormControl('', [Validators.required, Validators.pattern(/^[а-яА-ЯёЁ0-9\s\/-]+$/)]),
-    comment: new FormControl('')
+  signInForm = this.fb.group({
+    name: ['', [Validators.required, Validators.pattern(/^[а-яА-ЯёЁ\s-]+$/)]],
+    last_name: ['', [Validators.required, Validators.pattern(/^[а-яА-ЯёЁ\s-]+$/)]],
+    phone: ['', [Validators.required, Validators.pattern(/^\+?\d{11}$/)]],
+    country: ['', Validators.required],
+    zip: ['', Validators.required],
+    product: [{value: '', disabled: true}],
+    address: ['', [Validators.required, Validators.pattern(/^[а-яА-ЯёЁ0-9\s\/-]+$/)]],
+    comment: ['']
   })
 
   get name() {
@@ -54,11 +54,8 @@ export class OrderComponent implements OnInit, OnDestroy {
     return this.signInForm.get('address');
   }
 
-  get comment() {
-    return this.signInForm.get('comment');
-  }
-
-  constructor(private activatedRout: ActivatedRoute, private httpService: HttpService) {
+  constructor(private activatedRout: ActivatedRoute, private httpService: HttpService,
+              private fb: FormBuilder ) {
   }
 
   private subscription: Subscription | null = null;
@@ -73,11 +70,11 @@ export class OrderComponent implements OnInit, OnDestroy {
     })
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.subscription?.unsubscribe();
   }
 
-  createOrder() {
+  createOrder(): void {
     if (this.signInForm.valid) {
       const formData = this.signInForm.getRawValue() as FormType;
       this.httpService.createOrder(formData)

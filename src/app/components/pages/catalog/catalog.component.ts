@@ -16,11 +16,11 @@ export class CatalogComponent implements OnInit {
 
   ngOnInit(): void {
     this.httpService.getProducts().subscribe({
-      next: (data) => {
+      next: (data: ProductType[]): void => {
         this.products = data;
         console.log(data);
       },
-      error: (error) => {
+      error: (error): void => {
         console.log(error);
         this.router.navigate(['/']);
       }

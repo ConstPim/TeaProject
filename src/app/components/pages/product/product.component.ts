@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ProductType} from "../../../types/product.type";
 import {HttpService} from "../../../servises/http.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, Params, Router} from "@angular/router";
 
 @Component({
   selector: 'app-product',
@@ -22,11 +22,11 @@ export class ProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.activatedRout.params.subscribe((params) => {
+    this.activatedRout.params.subscribe((params: Params): void => {
       if (params['id']) {
         this.httpService.getProduct(+params['id'])
           .subscribe({
-            next: (data) => {
+            next: (data: ProductType): void => {
               this.product = data;
             },
             error: error => {
