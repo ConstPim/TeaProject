@@ -3,7 +3,7 @@ import {Subscription} from "rxjs";
 import {ActivatedRoute} from "@angular/router";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {FormType} from "../../../types/form.type";
-import {HttpService} from "../../../servises/http.service";
+import {HttpService} from "../../shared/servises/http.service";
 
 @Component({
   selector: 'order',

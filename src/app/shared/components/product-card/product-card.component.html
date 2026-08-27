@@ -1,0 +1,31 @@
+  <div class="card text-start">
+    <img src="{{product.image}}" class="card-img-top img-fluid" alt="image1">
+    <div class="card-body">
+      <div>
+        <h5 class="card-title">{{product.title}}</h5>
+        <p class="card-text text-start">
+<!--          {{product.description}}-->
+          <ng-container *ngIf="isExpanded; else short">
+            {{ product.description }}
+            <span class="text-primary cursor-pointer fw-bold" (click)="toggleDescription()"> Свернуть</span>
+          </ng-container>
+
+          <ng-template #short>
+            {{ product.description | shortWords: 100 }}
+            <span
+              *ngIf="product.description.split(' ').length > 100"
+              class="text-primary cursor-pointer fw-bold"
+              style="cursor: pointer;"
+              (click)="toggleDescription()">
+            Читать далее
+          </span>
+          </ng-template>
+
+
+
+
+        </p>
+      </div>
+      <a [routerLink]="['/catalog', product.id]" class="btn btn-primary w-btn mt-3">Подробнее</a>
+    </div>
+  </div>

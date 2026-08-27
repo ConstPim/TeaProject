@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ProductType} from "../../../types/product.type";
+import {ProductType} from "../../../../types/product.type";
 
 @Component({
   selector: 'product-card',
@@ -9,6 +9,12 @@ import {ProductType} from "../../../types/product.type";
 export class ProductCardComponent implements OnInit {
 
   @Input() product: ProductType;
+
+  isExpanded: boolean = false;
+
+  toggleDescription(): void {
+    this.isExpanded = !this.isExpanded;
+  }
 
   constructor() {
     this.product = {
